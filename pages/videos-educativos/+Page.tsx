@@ -1,20 +1,30 @@
 import type { Data } from "./+data";
 import { useState } from "react";
 import { useData } from "../../renderer/useData";
-import Libro from "../../server/Libro";
 import Tabla from "../../components/Tabla";
-import { LibroTipo } from "../types";
+import { VideoEducativoTipo } from "../types";
+import VideoEducativo from "../../server/VideoEducativo";
 
 export { Page };
 
-type librosProps = LibroTipo & {
+type videosProps = VideoEducativoTipo & {
   active: number;
 };
 
 function Page() {
-  const { librosData } = useData<Data>();
-  const [activeRow, setActiveRow] = useState({ active: -1 } as librosProps);
+  const { videosEducativosData } = useData<Data>();
+  const [activeRow, setActiveRow] = useState({ active: -1 } as videosProps);
   const [printText, setPrintText] = useState(``);
+
+  const getDuracion = (duracion: number) => {
+    const segundos = duracion % 60;
+    const minutos = Math.floor(duracion / 60);
+    const horas = Math.floor(minutos / 60);
+
+    return `${horas}:${minutos.toString().padStart(2, "0")}:${segundos
+      .toString()
+      .padStart(2, "0")}`;
+  };
 
   const prestar = () => {
     if (activeRow.active === -1) {
@@ -24,15 +34,16 @@ function Page() {
       alert("Recurso no disponible");
       return;
     }
-    const libro = new Libro(
+    const video = new VideoEducativo(
       activeRow.codigo,
       activeRow.titulo,
-      activeRow.ISBN,
-      activeRow.categoria,
+      activeRow.formato,
+      activeRow.duracionSegundos,
+      activeRow.añoCreacion,
       activeRow.estaDisponible
     );
     setPrintText(
-      `Libro "${libro.getTitulo()}" prestado por ${libro.prestar()} días.`
+      `Video educativo "${video.getTitulo()}" prestado por ${video.prestar()} días.`
     );
   };
 
@@ -40,27 +51,39 @@ function Page() {
     <>
       <section>
         <br />
-        <Tabla prestar={prestar} type="libro">
+        <Tabla prestar={prestar} type="video">
           <thead>
             <tr>
               <th>Código</th>
-              <th>ISBN</th>
+              <th>formato</th>
               <th>Título</th>
-              <th>Categoría</th>
+              <th>Duración</th>
+              <th>Año creación</th>
               <th>Está disponible</th>
             </tr>
           </thead>
           <tbody>
-            {librosData.map(
-              ({ codigo, ISBN, titulo, categoria, estaDisponible }, index) => (
+            {videosEducativosData.map(
+              (
+                {
+                  codigo,
+                  formato,
+                  titulo,
+                  duracionSegundos,
+                  añoCreacion,
+                  estaDisponible,
+                },
+                index
+              ) => (
                 <tr
                   key={index}
                   onClick={() => {
                     setActiveRow({
                       codigo,
-                      ISBN,
+                      formato,
                       titulo,
-                      categoria,
+                      duracionSegundos,
+                      añoCreacion,
                       estaDisponible,
                       active: index,
                     });
@@ -68,9 +91,10 @@ function Page() {
                   className={activeRow.active === index ? "active" : ""}
                 >
                   <td>{codigo}</td>
-                  <td>{ISBN}</td>
+                  <td>{formato}</td>
                   <td>{titulo}</td>
-                  <td>{categoria}</td>
+                  <td>{getDuracion(duracionSegundos)}</td>
+                  <td>{añoCreacion}</td>
                   <td>{estaDisponible ? "Si" : "No"}</td>
                 </tr>
               )

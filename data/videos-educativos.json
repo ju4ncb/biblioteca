@@ -1,0 +1,34 @@
+[
+  {
+    "codigo": "V-1",
+    "titulo": "Baby britain",
+    "estaDisponible": true,
+    "formato": "Blu-Ray",
+    "duracionSegundos": 193,
+    "añoCreacion": 1998
+  },
+  {
+    "codigo": "V-2",
+    "titulo": "I talk to the wind",
+    "estaDisponible": false,
+    "formato": "VHS",
+    "duracionSegundos": 442,
+    "añoCreacion": 1969
+  },
+  {
+    "codigo": "V-3",
+    "titulo": "In rainbows",
+    "estaDisponible": true,
+    "formato": "CD",
+    "duracionSegundos": 2558,
+    "añoCreacion": 2007
+  },
+  {
+    "codigo": "V-4",
+    "titulo": "Ants from up there",
+    "estaDisponible": true,
+    "formato": "CD",
+    "duracionSegundos": 3531,
+    "añoCreacion": 2022
+  }
+]

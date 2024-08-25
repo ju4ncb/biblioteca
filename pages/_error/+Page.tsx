@@ -1,5 +1,12 @@
 export { Page };
 
 function Page() {
-  return <div style={{ width: "100vw", height: "100vh" }}></div>;
+  return (
+    <div className="error">
+      <p>Esta página no existe</p>
+      <a href="/libros">
+        <button type="button">Ir al inicio</button>
+      </a>
+    </div>
+  );
 }

@@ -3,10 +3,14 @@ export default abstract class RecursoBibliografico {
   private titulo!: string;
   private estaDisponible!: boolean;
 
-  constructor(codigo: string, titulo: string) {
+  constructor(codigo: string, titulo: string);
+  constructor(codigo: string, titulo: string, estaDisponible: boolean);
+  constructor(codigo: string, titulo: string, estaDisponible?: boolean) {
     this.setCodigo(codigo);
     this.setTitulo(titulo);
-    this.setEstaDisponible(false);
+    this.setEstaDisponible(
+      estaDisponible !== undefined ? estaDisponible : false
+    );
   }
 
   //getter y setter

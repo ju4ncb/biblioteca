@@ -12,7 +12,7 @@ export type LibroTipo = RecursoBibliograficoTipo & {
 export type RevistaTipo = RecursoBibliograficoTipo & {
   ISSN: string;
   numeroVolumen: string;
-  fechaPublicacion: Date;
+  fechaPublicacion: string;
   periodicidad: string;
 };
 

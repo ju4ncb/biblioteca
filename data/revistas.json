@@ -1,0 +1,47 @@
+[
+  {
+    "codigo": "R-1",
+    "ISSN": "3000",
+    "titulo": "Paranoid android",
+    "estaDisponible": true,
+    "fechaPublicacion": "1-06-1997",
+    "periodicidad": "Semanal",
+    "numeroVolumen": "2"
+  },
+  {
+    "codigo": "R-2",
+    "ISSN": "3001",
+    "titulo": "Epitaph",
+    "estaDisponible": false,
+    "fechaPublicacion": "10-10-1969",
+    "periodicidad": "Anual",
+    "numeroVolumen": "5"
+  },
+  {
+    "codigo": "R-3",
+    "ISSN": "3002",
+    "titulo": "Down in a hole",
+    "estaDisponible": true,
+    "fechaPublicacion": "1-06-1997",
+    "periodicidad": "Mensual",
+    "numeroVolumen": "4"
+  },
+  {
+    "codigo": "R-4",
+    "ISSN": "3003",
+    "titulo": "The spiders all in tune",
+    "estaDisponible": true,
+    "fechaPublicacion": "1-01-1998",
+    "periodicidad": "Anual",
+    "numeroVolumen": "6"
+  },
+  {
+    "codigo": "R-5",
+    "ISSN": "3004",
+    "titulo": "Candy says",
+    "estaDisponible": false,
+    "fechaPublicacion": "1-01-1969",
+    "periodicidad": "Semanal",
+    "numeroVolumen": "203"
+  }
+]

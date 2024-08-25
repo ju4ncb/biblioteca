@@ -3,7 +3,7 @@ import RecursoBibliografico from "./RecursoBibliografico.js";
 export default class Revista extends RecursoBibliografico {
   ISSN!: string;
   numeroVolumen!: string;
-  fechaPublicacion!: Date;
+  fechaPublicacion!: string;
   periodicidad!: string;
 
   constructor(
@@ -11,10 +11,30 @@ export default class Revista extends RecursoBibliografico {
     titulo: string,
     ISSN: string,
     numeroVolumen: string,
-    fechaPublicacion: Date,
+    fechaPublicacion: string,
     periodicidad: string
+  );
+  constructor(
+    codigo: string,
+    titulo: string,
+    ISSN: string,
+    numeroVolumen: string,
+    fechaPublicacion: string,
+    periodicidad: string,
+    estaDisponible: boolean
+  );
+  constructor(
+    codigo: string,
+    titulo: string,
+    ISSN: string,
+    numeroVolumen: string,
+    fechaPublicacion: string,
+    periodicidad: string,
+    estaDisponible?: boolean
   ) {
-    super(codigo, titulo);
+    estaDisponible !== undefined
+      ? super(codigo, titulo, estaDisponible)
+      : super(codigo, titulo);
     this.setISSN(ISSN);
     this.setNumeroVolumen(numeroVolumen);
     this.setFechaPublicacion(fechaPublicacion);
@@ -43,7 +63,7 @@ export default class Revista extends RecursoBibliografico {
     return this.fechaPublicacion;
   }
 
-  public setFechaPublicacion(fechaPublicacion: Date) {
+  public setFechaPublicacion(fechaPublicacion: string) {
     this.fechaPublicacion = fechaPublicacion;
   }
 

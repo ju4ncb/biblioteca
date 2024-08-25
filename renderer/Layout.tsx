@@ -1,7 +1,6 @@
 export { Layout };
 
 import React from "react";
-import logoUrl from "./logo.svg";
 import { PageContextProvider } from "./usePageContext";
 import { Link } from "./Link";
 import type { PageContext } from "vike/types";
@@ -14,17 +13,23 @@ function Layout({
   children: React.ReactNode;
   pageContext: PageContext;
 }) {
+  const pagesNoSidebar = ["inicio"];
+  let pageTitle: string;
+  pageContext.data?.title !== undefined
+    ? (pageTitle = pageContext.data?.title)
+    : (pageTitle = "");
+
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
         <Frame>
-          <Sidebar>
-            <Logo />
-            <Link href="/">Inicio {pageContext.data?.title}</Link>
-            <Link href="/articulos">Articulos</Link>
-            <Link href="/clientes">Clientes</Link>
-            <Link href="/venta">Venta</Link>
-          </Sidebar>
+          {!pagesNoSidebar.includes(pageTitle) && (
+            <Sidebar>
+              <Link href="/libros">Libros</Link>
+              <Link href="/revistas">Revistas</Link>
+              <Link href="/videos-educativos">Videos</Link>
+            </Sidebar>
+          )}
           <Content>{children}</Content>
         </Frame>
       </PageContextProvider>
@@ -50,14 +55,6 @@ function Content({ children }: { children: React.ReactNode }) {
       <div id="page-content" className="page-content">
         {children}
       </div>
-    </div>
-  );
-}
-
-function Logo() {
-  return (
-    <div className="logo">
-      <img src={logoUrl} height={64} width={64} alt="logo" />
     </div>
   );
 }

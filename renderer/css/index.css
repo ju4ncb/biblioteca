@@ -13,12 +13,35 @@ code {
 body {
   margin: 0;
   background-color: #19191b;
-  color: #ba324f;
+  color: #c4a0e5;
   font-family: sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.error {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.error p {
+  color: white;
+}
+.error button {
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  color: #19191b;
+  transition: filter 0.3s ease;
+}
+.error button:hover {
+  filter: brightness(70%);
 }
 
 .page-content {
@@ -45,8 +68,23 @@ body {
     justify-content: center;
     align-items: center;
   }
+  #sidebar a:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+  }
+  #sidebar a:last-child {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
   .fixed-form {
     transform: translate(-50%, -50%) !important;
+  }
+  .table {
+    font-size: 12px !important;
   }
 }
 .sidebar {
@@ -56,6 +94,7 @@ body {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   line-height: 1.8em;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -68,10 +107,19 @@ body {
 
 #sidebar a {
   color: white;
-  border-radius: 8px;
+  background: #45454b;
   padding: 2px 10px;
-  margin-left: -10px;
   transition: background-color 0.3s ease;
+}
+
+#sidebar a:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+#sidebar a:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 #sidebar a:hover {
@@ -98,9 +146,9 @@ body {
   align-items: center;
   justify-content: center;
   background: none;
-  color: #ba324f;
-  border-bottom: #ba324f 3px solid;
-  border-top: #ba324f 3px solid;
+  color: #7832ba;
+  border-bottom: #7832ba 3px solid;
+  border-top: #7832ba 3px solid;
   border-radius: 20px;
   margin-bottom: 20px;
   margin-left: 50%;
@@ -124,8 +172,8 @@ input:read-only {
   align-items: center;
   flex-direction: column;
   background: #2f1b25;
-  border-top: solid 3px #ba324f;
-  border-bottom: solid 3px #ba324f;
+  border-top: solid 3px #7832ba;
+  border-bottom: solid 3px #7832ba;
   padding: 10px;
   position: fixed;
   right: 50%;
@@ -135,6 +183,82 @@ input:read-only {
 }
 .confirm div {
   display: flex;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  background: #252528;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 16px;
+}
+.table thead {
+  background: #7832ba;
+  color: #ddc8f0;
+}
+.table tr {
+  display: grid;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+}
+.table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.table tbody tr:hover {
+  background: #3e3e43;
+}
+.table tbody .active {
+  background: #323235;
+}
+
+.table-libro tr {
+  grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.table-revista tr {
+  grid-template-columns: 14% 14% 14% 15% 15% 14% 14%;
+}
+
+.table-video tr {
+  grid-template-columns: 17% 17% 17% 17% 16% 16%;
+}
+
+.btn-prestar {
+  z-index: 1;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 18px;
+  background: linear-gradient(to left, #73b67c, #72faff, #7b72ff, #ff72f3);
+  background-size: 200% 100%;
+  transition: background-position 0.5s ease, color 0.5s ease;
+  color: #ddc8f0;
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 35px;
+}
+
+.btn-prestar:hover {
+  background-position: right center;
+  color: #b7d9ff;
+}
+
+.btn-prestar::before {
+  content: "";
+  position: absolute;
+  top: 3px; /* Adjust based on border width */
+  left: 3px; /* Adjust based on border width */
+  right: 3px; /* Adjust based on border width */
+  bottom: 3px; /* Adjust based on border width */
+  width: 94px;
+  height: 29px;
+  border-radius: 8px; /* Adjust as needed */
+  background: #19191b;
+  z-index: -1;
 }
 
 /*# sourceMappingURL=index.css.map */

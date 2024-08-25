@@ -4,8 +4,24 @@ export default class Libro extends RecursoBibliografico {
   ISBN!: string;
   categoria!: string;
 
-  constructor(codigo: string, titulo: string, ISBN: string, categoria: string) {
-    super(codigo, titulo);
+  constructor(codigo: string, titulo: string, ISBN: string, categoria: string);
+  constructor(
+    codigo: string,
+    titulo: string,
+    ISBN: string,
+    categoria: string,
+    estaDisponible: boolean
+  );
+  constructor(
+    codigo: string,
+    titulo: string,
+    ISBN: string,
+    categoria: string,
+    estaDisponible?: boolean
+  ) {
+    estaDisponible !== undefined
+      ? super(codigo, titulo, estaDisponible)
+      : super(codigo, titulo);
     this.setISBN(ISBN);
     this.setCategoria(categoria);
   }

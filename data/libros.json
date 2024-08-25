@@ -1,0 +1,23 @@
+[
+  {
+    "codigo": "L-1",
+    "ISBN": "2000",
+    "titulo": "La última salchipapa",
+    "estaDisponible": true,
+    "categoria": "Reserva"
+  },
+  {
+    "codigo": "L-2",
+    "ISBN": "2001",
+    "titulo": "Waos",
+    "estaDisponible": false,
+    "categoria": "Reserva"
+  },
+  {
+    "codigo": "L-3",
+    "ISBN": "2002",
+    "titulo": "Children love the sun",
+    "estaDisponible": true,
+    "categoria": "General"
+  }
+]

@@ -1,6 +1,6 @@
 import RecursoBibliografico from "./RecursoBibliografico.js";
 
-export default class Libro extends RecursoBibliografico {
+export default class VideoEducativo extends RecursoBibliografico {
   formato!: string;
   duracionSegundos!: number;
   añoCreacion!: number;
@@ -11,8 +11,26 @@ export default class Libro extends RecursoBibliografico {
     formato: string,
     duracionSegundos: number,
     añoCreacion: number
+  );
+  constructor(
+    codigo: string,
+    titulo: string,
+    formato: string,
+    duracionSegundos: number,
+    añoCreacion: number,
+    estaDisponible: boolean
+  );
+  constructor(
+    codigo: string,
+    titulo: string,
+    formato: string,
+    duracionSegundos: number,
+    añoCreacion: number,
+    estaDisponible?: boolean
   ) {
-    super(codigo, titulo);
+    estaDisponible !== undefined
+      ? super(codigo, titulo, estaDisponible)
+      : super(codigo, titulo);
     this.setFormato(formato);
     this.setDuracionSegundos(duracionSegundos);
     this.setAñoCreacion(añoCreacion);
@@ -25,7 +43,7 @@ export default class Libro extends RecursoBibliografico {
   }
 
   public setFormato(formato: string) {
-    if (!["CD", "DVD", "Blu-Ray"].includes(formato)) {
+    if (!["CD", "VHS", "Blu-Ray"].includes(formato)) {
       throw new Error(`Formato inválido: ${formato}`);
     }
     this.formato = formato;

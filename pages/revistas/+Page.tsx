@@ -1,19 +1,19 @@
 import type { Data } from "./+data";
 import { useState } from "react";
 import { useData } from "../../renderer/useData";
-import Libro from "../../server/Libro";
+import { RevistaTipo } from "../types";
+import Revista from "../../server/Revista";
 import Tabla from "../../components/Tabla";
-import { LibroTipo } from "../types";
 
 export { Page };
 
-type librosProps = LibroTipo & {
+type revistasProps = RevistaTipo & {
   active: number;
 };
 
 function Page() {
-  const { librosData } = useData<Data>();
-  const [activeRow, setActiveRow] = useState({ active: -1 } as librosProps);
+  const { revistasData } = useData<Data>();
+  const [activeRow, setActiveRow] = useState({ active: -1 } as revistasProps);
   const [printText, setPrintText] = useState(``);
 
   const prestar = () => {
@@ -24,15 +24,17 @@ function Page() {
       alert("Recurso no disponible");
       return;
     }
-    const libro = new Libro(
+    const revista = new Revista(
       activeRow.codigo,
       activeRow.titulo,
-      activeRow.ISBN,
-      activeRow.categoria,
+      activeRow.ISSN,
+      activeRow.numeroVolumen,
+      activeRow.fechaPublicacion,
+      activeRow.periodicidad,
       activeRow.estaDisponible
     );
     setPrintText(
-      `Libro "${libro.getTitulo()}" prestado por ${libro.prestar()} días.`
+      `Revista "${revista.getTitulo()}" prestada por ${revista.prestar()} días.`
     );
   };
 
@@ -40,27 +42,42 @@ function Page() {
     <>
       <section>
         <br />
-        <Tabla prestar={prestar} type="libro">
+        <Tabla prestar={prestar} type="revista">
           <thead>
             <tr>
               <th>Código</th>
-              <th>ISBN</th>
+              <th>ISSN</th>
               <th>Título</th>
-              <th>Categoría</th>
+              <th>Número de volumen</th>
+              <th>Fecha de publicación</th>
+              <th>Periodicidad</th>
               <th>Está disponible</th>
             </tr>
           </thead>
           <tbody>
-            {librosData.map(
-              ({ codigo, ISBN, titulo, categoria, estaDisponible }, index) => (
+            {revistasData.map(
+              (
+                {
+                  codigo,
+                  ISSN,
+                  titulo,
+                  numeroVolumen,
+                  fechaPublicacion,
+                  periodicidad,
+                  estaDisponible,
+                },
+                index
+              ) => (
                 <tr
                   key={index}
                   onClick={() => {
                     setActiveRow({
                       codigo,
-                      ISBN,
+                      ISSN,
                       titulo,
-                      categoria,
+                      numeroVolumen,
+                      fechaPublicacion,
+                      periodicidad,
                       estaDisponible,
                       active: index,
                     });
@@ -68,9 +85,11 @@ function Page() {
                   className={activeRow.active === index ? "active" : ""}
                 >
                   <td>{codigo}</td>
-                  <td>{ISBN}</td>
+                  <td>{ISSN}</td>
                   <td>{titulo}</td>
-                  <td>{categoria}</td>
+                  <td>{numeroVolumen}</td>
+                  <td>{fechaPublicacion}</td>
+                  <td>{periodicidad}</td>
                   <td>{estaDisponible ? "Si" : "No"}</td>
                 </tr>
               )
